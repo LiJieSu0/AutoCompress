@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 import shutil
 
+
 #currPath=r"C:\Users\taipi\Desktop\scripts\MyLog" #Path(__file__).parent.absolute() # get the python script path
 
 def makeArchiveToParentDir(currPath,FileName,targetPath): #make archive zip to the parent dir
@@ -21,8 +22,8 @@ def groupingFile(currPath,allFiles): #get the dictionary of the files' name
             fileDict[pureFileName].append(os.path.join(currPath,i))
     return fileDict
 
-def main():
-    currPath=sys.argv[1]
+def makeZipFiles(currPath):
+    
     allFiles=os.listdir(currPath)
     
     fileDict=groupingFile(currPath,allFiles)
@@ -37,9 +38,9 @@ def main():
             print("Folder create failed")
         for i in value:
             moveFile(i,os.path.join(currPath,newDir))
-    print(newDirLst)
 
     for key in fileDict:
+        
         print(key+".zip creating")
         makeArchiveToParentDir(currPath,key,os.path.join(currPath,key+"Temp"))
         print(key+".zip creat success")
@@ -52,7 +53,8 @@ def main():
         shutil.rmtree(tempPath)
 
 if __name__ == "__main__":
-    main()
+    currPath=sys.argv[1]
+    makeZipFiles(currPath)
 
 
 

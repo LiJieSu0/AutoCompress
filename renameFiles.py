@@ -14,14 +14,15 @@ def reName(currPath,orginName,newName):
     print(strValue)
     file=os.path.join(currPath,orginName)
     os.rename(file,os.path.join(currPath,newName+strValue))
-def main():
-    currPath=sys.argv[1]
+def renameFiles(currPath,fileName):
     allFiles=os.listdir(currPath)
 
     for i in allFiles:
-        reName(currPath,i,sys.argv[2])
+        reName(currPath,i,fileName)
     print("Rename Success!!")
 
 if __name__ == "__main__":
-    main()
+    currPath=sys.argv[1]
+    fileName=sys.argv[2]
+    renameFiles(currPath,fileName)
 
